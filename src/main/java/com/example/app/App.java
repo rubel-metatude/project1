@@ -6,6 +6,9 @@ import com.module.app.Main;
 
 public class App {
 	public boolean someAppMethod() {
+		
+		System.out.println("helleo wordl");
+		
 		return new Main().test();
 //		return false;
 	}
