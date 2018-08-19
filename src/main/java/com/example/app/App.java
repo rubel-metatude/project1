@@ -7,7 +7,7 @@ import com.module.app.Main;
 public class App {
 	public boolean someAppMethod() {
 
-		System.out.println("bug fixed again");
+		System.out.println("bug fixed");
 		
 		return new Main().test();
 		// return false;
