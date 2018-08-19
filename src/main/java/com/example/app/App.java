@@ -7,6 +7,7 @@ import com.module.app.Main;
 public class App {
 	public boolean someAppMethod() {
 		
+		
 		System.out.println("alksdjfsdj ");
 		
 		return new Main().test();
