@@ -9,6 +9,7 @@ public class App {
 
 		System.out.println("bug rubel squashed");
 		
+		
 		return new Main().test();
 		// return false;
 	}
