@@ -6,11 +6,11 @@ import com.module.app.Main;
 
 public class App {
 	public boolean someAppMethod() {
-		
-		
-		System.out.println("alksdjfsdj ");
+
+		System.out.println("1");
+		System.out.println("2");
 		
 		return new Main().test();
-//		return false;
+		// return false;
 	}
 }
