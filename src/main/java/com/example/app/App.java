@@ -7,7 +7,7 @@ import com.module.app.Main;
 public class App {
 	public boolean someAppMethod() {
 
-		System.out.println("bug squashed");
+		System.out.println("bug rubel squashed");
 		
 		return new Main().test();
 		// return false;
