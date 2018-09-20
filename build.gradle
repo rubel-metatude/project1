@@ -1,4 +1,7 @@
-apply plugin: 'java-library'
+plugins {
+	id 'java-library'
+	id 'org.hidetake.ssh' version '2.9.0'
+}
 
 repositories {
     jcenter()
@@ -11,4 +14,26 @@ dependencies {
 	implementation project(":module1")
 	api 'com.example:library:1.1-SNAPSHOT'
     testImplementation 'junit:junit:4.12'
+}
+
+remotes {
+  webServer {
+    host = '192.168.255.11'
+    user = 'administrator'
+    password = 'viadesk'
+  }
+}
+
+ssh.settings {
+  timeoutSec = 10
+}
+
+task deploy {
+  doLast {
+    ssh.run {
+      session(remotes.webServer) {
+        executeSudo 'systemctl restart tomcat8-suite', pty: true
+      }
+    }
+  }
 }
