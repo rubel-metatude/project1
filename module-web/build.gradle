@@ -1,5 +1,5 @@
 plugins {
-	id 'java-library'
+	id 'war'
 }
 
 repositories {
@@ -7,6 +7,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'javax.servlet:javax.servlet-api:3.1.0' 
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0' 
     testCompile 'junit:junit:4.12'
 }

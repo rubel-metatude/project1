@@ -25,6 +25,7 @@ ssh.settings {
 
 task deploy {
   doLast {
+  	/*
     ssh.run {
       session(remotes.webServer) {
       	def localLibDir = "${project(':module-web').buildDir}/lib"
@@ -42,7 +43,21 @@ task deploy {
       	put from:localLibDir, into:remoteWebInfDir
       	
       	executeSudo "chown -R tomcat8:tomcat8 ${remoteWebDir}"
-      	executeSudo 'systemctl restart tomcat8-suite'
+      	executeSudo 'systemctl restart tomcat8'
+      }
+    }
+    */
+    ssh.run {
+      session(remotes.webServer) {
+      	def webProject = project(':module-web');
+      	def webappsDir = '/var/lib/tomcat8/webapps/'
+      	
+      	executeSudo "chown -R administrator:administrator ${webappsDir} "
+      	
+      	put from: webProject.war.archivePath, into: webappsDir
+      	
+      	executeSudo "chown -R tomcat8:tomcat8 ${webappsDir}"
+      	executeSudo 'systemctl restart tomcat8'
       }
     }
   }

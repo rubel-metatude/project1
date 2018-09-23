@@ -1,20 +1,25 @@
-package com.module.app.web;
+package com.module.web;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "HelloServlet", urlPatterns = {"hello"}, loadOnStartup = 1) 
+@WebServlet("/hello") 
 public class HelloServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(final HttpServletRequest request, final HttpServletResponse response)
         throws ServletException, IOException {
         response.getWriter().print("Hello, World!");  
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doPost(final HttpServletRequest request, final HttpServletResponse response)
         throws ServletException, IOException {
         String name = request.getParameter("name");
         if (name == null) name = "World";
