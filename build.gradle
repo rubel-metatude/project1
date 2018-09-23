@@ -19,13 +19,30 @@ remotes {
 
 ssh.settings {
   timeoutSec = 10
+  pty = true
+  //fileTransfer = 'scp'
 }
 
 task deploy {
   doLast {
     ssh.run {
       session(remotes.webServer) {
-        executeSudo 'systemctl restart tomcat8-suite', pty: true
+      	def localLibDir = "${project(':module-web').buildDir}/lib"
+      	def remoteWebDir = '/var/lib/tomcat8/webapps/module-web'
+      	def remoteWebInfDir = "${remoteWebDir}/WEB-INF"      	
+      	
+      	copy {
+      		from "${project(':module-web').buildDir}/libs"
+      		into localLibDir
+      	}  
+      	
+      	executeSudo "mkdir -p ${remoteWebInfDir}"
+      	executeSudo "chown -R administrator:administrator ${remoteWebDir} "
+      	
+      	put from:localLibDir, into:remoteWebInfDir
+      	
+      	executeSudo "chown -R tomcat8:tomcat8 ${remoteWebDir}"
+      	executeSudo 'systemctl restart tomcat8-suite'
       }
     }
   }
