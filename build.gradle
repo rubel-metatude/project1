@@ -14,14 +14,12 @@ remotes {
     host = '192.168.255.11'
     user = 'administrator'
     identity = file("${System.getProperty('user.home')}/.ssh/id_rsa")
-    //passphrase = 'jenkins' // for jenkins
   }
 }
 
 ssh.settings {
   timeoutSec = 10
-  //pty = true // for executeSudo() - password authentication only
-  agent = true // ssh identity - executeSudo() does not work, but workarounds available
+  agent = true
 }
 
 task deploy {
