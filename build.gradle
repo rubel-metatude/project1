@@ -13,7 +13,7 @@ remotes {
   webServer {
     host = '192.168.255.11'
     user = 'administrator'
-    password = 'viadesk'
+    identity = file("${System.getProperty('user.home')}/.ssh/id_rsa")
   }
 }
 
@@ -26,6 +26,8 @@ task deploy {
   doLast {
     ssh.run {
       session(remotes.webServer) {
+      	print remotes.webServer.identity
+      	
       	def webProject = project(':module-web');
       	def webappsDir = '/var/lib/tomcat8/webapps/'
       	
