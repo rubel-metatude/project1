@@ -14,14 +14,13 @@ remotes {
     host = '192.168.255.11'
     user = 'administrator'
     identity = file("${System.getProperty('user.home')}/.ssh/id_rsa")
-    //println identity
   }
 }
 
 ssh.settings {
   timeoutSec = 10
-  pty = true // execute sudo
-  agent = true // ssh identity
+  pty = true // for executeSudo() - password authentication only
+  agent = true // ssh identity - executeSudo() does not work, but workarounds available
 }
 
 task deploy {

@@ -16,7 +16,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh './gradlew -d deploy'
+                sh './gradlew --stacktrace deploy'
             }
         }
     }
