@@ -21,7 +21,7 @@ remotes {
 ssh.settings {
   timeoutSec = 10
   //pty = true // for executeSudo() - password authentication only
-  agent = true // ssh identity - executeSudo() does not work, but workarounds available
+  agent = false // ssh identity - executeSudo() does not work, but workarounds available
   //fileTransfer = 'scp'
 }
 
