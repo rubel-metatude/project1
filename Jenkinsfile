@@ -16,7 +16,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh './gradlew --stacktrace deploy'
+                sshagent (credentials: ['6b7eab92-a500-493c-b54d-305fc1272bb4']) {
+				    //sh 'ssh -o StrictHostKeyChecking=no -l cloudbees 192.168.1.106 uname -a'
+				    
+                	sh './gradlew --stacktrace deploy'
+				  }
             }
         }
     }
