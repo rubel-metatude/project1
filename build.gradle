@@ -14,7 +14,6 @@ remotes {
     host = '192.168.255.11'
     user = 'administrator'
     identity = file("${System.getProperty('user.home')}/.ssh/id_rsa")
-    passphrase = 'jenkins' // for jenkins
   }
 }
 
