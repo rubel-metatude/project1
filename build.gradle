@@ -14,26 +14,24 @@ remotes {
     host = '192.168.255.11'
     user = 'administrator'
     identity = file("${System.getProperty('user.home')}/.ssh/id_rsa")
-    print identity
+    //println identity
   }
 }
 
 ssh.settings {
   timeoutSec = 10
-  pty = true
+  pty = true // execute sudo
+  agent = true // ssh identity
 }
 
 task deploy {
   doLast {
     ssh.run {
       session(remotes.webServer) {
-      	print remotes.webServer.identity
-      	
-      	def webProject = project(':module-web');
       	def webappsDir = '/var/lib/tomcat8/webapps/'
-      	
       	executeSudo "chown -R administrator:administrator ${webappsDir} "
-      	
+      	      	
+      	def webProject = project(':module-web')
       	put from: webProject.war.archivePath, into: webappsDir
       	
       	executeSudo "chown -R tomcat8:tomcat8 ${webappsDir}"
